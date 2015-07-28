@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Grid";
+}
+
+<html>
+<head>
+	<title>Metrics</title>
+</head>
+<body>
+	<div>
+		<h2>Metrics</h2>
+		<table class="table table-striped" id="student" cellpadding="2" cellspacing="2" border="1" width="400px">
+			<tr>
+				<td style="background-color: gray; color: white">Metric Name</td>
+				<td style="background-color: gray; color: white">Test Case Name</td>
+				<td style="background-color: gray; color: white">temp</td>
+				<td style="background-color: gray; color:white">temp</td>
+				<td style="background-color: gray; color:white">other</td>
+			</tr>
+		</table>
+	</div>
+
+	<div>
+		<h2>Search by ID</h2>
+
+		<input type="text" size="5" id="stuId" />
+		<input type="button" value="Search" onclick="find();" />
+
+		<p id="st"></p>
+	</div>
+	<script src="~/Scripts/jquery-2.1.4.js"></script>
+
+	<script type="text/javascript">
+
+		//url: '../api/Charting/getproblem',
+		//var uri = 'api/students';
+		var uri = '../api/Metrics/getmetrics';
+        $(document).ready(function () {
+            $.getJSON(uri)
+            .done(function (data) {
+                $.each(data, function (key, item) {
+                	$('#student').append("<tr><td>" + item.MetricName + "</td>" + "<td>" + item.TestCaseName + "</td>" + "<td>" + item.MetricName + "</td>" + "<td>" + item.MetricName + '%' + "</td>" + "<td>" + item.MetricName + "</td></tr>");
+                });
+            });
+        });
+
+        function formatItem(item) {
+            return item.Name + '-' + item.PercentageMarks;
+        }
+        function find() {
+            var id = $('#stuId').val();
+            $.getJSON(uri + '/' + id)
+            .done(function (data) {
+                $('#st').text(formatItem(data));
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                $('#student').text('error' + err);
+            })
+        }
+	</script>
+</body>
+</html>  
+

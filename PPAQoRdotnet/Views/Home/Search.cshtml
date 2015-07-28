@@ -1,0 +1,333 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Metric Search</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					ASIC QA Metrics
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-6">
+							<form role="form" action="/Home/GridResults" method="post">
+								@*<div class="form-group">
+									<label>Text Input</label>
+									<input class="form-control">
+									<p class="help-block">Example block-level help text here.</p>
+								</div>*@
+								<div class="form-group">
+									<label>Date From</label>
+									<input id="start" name="start" class="form-control" placeholder="Enter Start Date">
+								</div>
+								<div class="form-group">
+									<label>Kit</label>
+									<select class="form-control" id="kit" name="kit">
+										<option value="">Select a Kit</option>
+										<option value="1273">1273</option>
+										<option value="adf733_r1.7_c">adf733_r1.7_c</option>
+										<option value="adf733_r1.7_s">adf733_r1.7_s</option>
+										<option value="adf733_r1.8_c">adf733_r1.8_c</option>
+										<option value="adf733_r1.8_s">adf733_r1.8_s</option>
+										<option value="adf736_r2.2_c">adf736_r2.2_c</option>
+										<option value="adf736_r2.2_s">adf736_r2.2_s</option>
+										<option value="adf736_r2.3_c">adf736_r2.3_c</option>
+									</select>
+								</div>
+								<div class="form-group">
+                                    <select class="form-control" name="selectMetrics" id="selectMetrics">
+                                        <option>apr_Cell_Count</option>
+                                        <option>apr_cpu_runtime_(secs)</option>
+                                        <option>apr_cts_max_global_skew</option>
+                                        <option>apr_DRC</option>
+                                        <option>apr_DRC_Violations</option>
+                                        <option>apr_max_cap_viols</option>
+                                        <option>apr_max_fanout_viols</option>
+                                        <option>apr_max_trans_viols</option>
+                                        <option>apr_Memory_(MB)</option>
+                                        <option>apr_Power_Internal</option>
+                                        <option>apr_Power_Leakage</option>
+                                        <option>apr_Power_Switching</option>
+                                        <option>apr_Power_Total</option>
+                                        <option>apr_pvt</option>
+                                        <option>apr_REG2REG_critical_path_len</option>
+                                        <option>apr_REG2REG_TNS</option>
+                                        <option>apr_REG2REG_total_hold_viol</option>
+                                        <option>apr_REG2REG_total_neg_slack</option>
+                                        <option>apr_REG2REG_WNS</option>
+                                        <option>apr_REG2REG_worst_hold_violation</option>
+                                        <option>apr_REG2REG_worst_setup_viol</option>
+                                        <option>apr_Run_Time_(secs)</option>
+                                        <option>apr_Shorts</option>
+                                        <option>apr_tool_version</option>
+                                        <option>apr_utilization_(%)</option>
+                                        <option>calibre_denall_reuse</option>
+                                        <option>calibre_drcc</option>
+                                        <option>calibre_gden</option>
+                                        <option>calibre_HV</option>
+                                        <option>calibre_lvs</option>
+                                        <option>chop</option>
+                                        <option>DateTime</option>
+                                        <option>Dot</option>
+                                        <option>drc_denall_(NB)</option>
+                                        <option>drc_denall_reuse_Peak_Memory_(MB)</option>
+                                        <option>drc_denall_reuse_Runtime_(secs)</option>
+                                        <option>drc_drcd_(NB)</option>
+                                        <option>drc_drcd_Peak_Memory_(MB)</option>
+                                        <option>drc_drcd_Runtime_(secs)</option>
+                                        <option>drc_IPall_(NB)</option>
+                                        <option>drc_IPall_Peak_Memory_(MB)</option>
+                                        <option>drc_IPall_Runtime_(secs)</option>
+                                        <option>drc_tool_version</option>
+                                        <option>drc_total_viols</option>
+                                        <option>drc_trclvs_(NB)</option>
+                                        <option>drc_trclvs_Peak_Memory_(MB)</option>
+                                        <option>drc_trclvs_Runtime_(secs)</option>
+                                        <option>Kit</option>
+                                        <option>model</option>
+                                        <option>owner</option>
+                                        <option>pv_max_pvt</option>
+                                        <option>pv_max_tttt_Cell_Count</option>
+                                        <option>pv_max_tttt_REG2REG_critical_path_len</option>
+                                        <option>pv_max_tttt_REG2REG_total_neg_slack</option>
+                                        <option>pv_max_tttt_REG2REG_worst_setup_viol</option>
+                                        <option>pv_max_tttt_run_time_(secs)</option>
+                                        <option>pv_max_tttt_tool_version</option>
+                                        <option>pv_min_pvt</option>
+                                        <option>pv_min_tttt_Cell_Count</option>
+                                        <option>pv_min_tttt_REG2REG_critical_path_len</option>
+                                        <option>pv_min_tttt_REG2REG_total_neg_slack</option>
+                                        <option>pv_min_tttt_REG2REG_worst_setup_viol</option>
+                                        <option>pv_min_tttt_run_time_(secs)</option>
+                                        <option>pv_min_tttt_tool_version</option>
+                                        <option>pv_noise_pvt</option>
+                                        <option>pv_noise_tttt_Cell_Count</option>
+                                        <option>pv_noise_tttt_max_cap_viols</option>
+                                        <option>pv_noise_tttt_max_fanout_viols</option>
+                                        <option>pv_noise_tttt_max_trans_viols</option>
+                                        <option>pv_noise_tttt_run_time_(secs)</option>
+                                        <option>pv_noise_tttt_tool_version</option>
+                                        <option>pv_power_pvt</option>
+                                        <option>pv_power_tttt_internal</option>
+                                        <option>pv_power_tttt_leakage</option>
+                                        <option>pv_power_tttt_run_time_(secs)</option>
+                                        <option>pv_power_tttt_switch</option>
+                                        <option>pv_power_tttt_total</option>
+                                        <option>quality</option>
+                                        <option>sta_Cell_Count</option>
+                                        <option>sta_max_cap_viols</option>
+                                        <option>sta_max_trans_viols</option>
+                                        <option>sta_max_tttt_REG2REG_TNS</option>
+                                        <option>sta_max_tttt_REG2REG_worst_setup_viols</option>
+                                        <option>sta_min_tttt_REG2REG_TNS</option>
+                                        <option>sta_min_tttt_REG2REG_worst_hold_viols</option>
+                                        <option>sta_Run_Time_(secs)</option>
+                                        <option>stepping</option>
+                                        <option>syn_Cell_Count</option>
+                                        <option>syn_cpu_runtime_(secs)</option>
+                                        <option>syn_max_cap_viols</option>
+                                        <option>syn_max_fanout_viols</option>
+                                        <option>syn_max_trans_viols</option>
+                                        <option>syn_pvt</option>
+                                        <option>syn_REG2REG_critical_path_len</option>
+                                        <option>syn_REG2REG_TNS</option>
+                                        <option>syn_REG2REG_total_hold_viol</option>
+                                        <option>syn_REG2REG_total_neg_slack</option>
+                                        <option>syn_REG2REG_WNS</option>
+                                        <option>syn_REG2REG_worst_hold_violation</option>
+                                        <option>syn_REG2REG_worst_setup_viol</option>
+                                        <option>syn_tool_version</option>
+                                        <option>Test_case_creation_date</option>
+                                        <option>Test_case_name</option>
+                                        <option>Test_case_path</option>
+                                    </select>
+								</div>
+								<div class="form-group">
+									<label>Static Control</label>
+									<p class="form-control-static">email@example.com</p>
+								</div>
+								<div class="form-group">
+									<label>File input</label>
+									<input type="file">
+								</div>
+								<div class="form-group">
+									<label>Text area</label>
+									<textarea class="form-control" rows="3"></textarea>
+								</div>
+								<div class="form-group">
+									<label>Checkboxes</label>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="">Checkbox 1
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="">Checkbox 2
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="">Checkbox 3
+										</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Inline Checkboxes</label>
+									<label class="checkbox-inline">
+										<input type="checkbox">1
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox">2
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox">3
+									</label>
+								</div>
+								<div class="form-group">
+									<label>Radio Buttons</label>
+									<div class="radio">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
+										</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Inline Radio Buttons</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
+									</label>
+								</div>
+								<div class="form-group">
+									<label>Selects</label>
+									<select class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Multiple Selects</label>
+									<select multiple class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-default">Submit Button</button>
+								<button type="reset" class="btn btn-default">Reset Button</button>
+							</form>
+						</div>
+						<!-- /.col-lg-6 (nested) -->
+						<div class="col-lg-6">
+							<h1>Disabled Form States</h1>
+							<form role="form">
+								<fieldset disabled>
+									<div class="form-group">
+										<label for="disabledSelect">Disabled input</label>
+										<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
+									</div>
+									<div class="form-group">
+										<label for="disabledSelect">Disabled select menu</label>
+										<select id="disabledSelect" class="form-control">
+											<option>Disabled select</option>
+										</select>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox">Disabled Checkbox
+										</label>
+									</div>
+									<button type="submit" class="btn btn-primary">Disabled Button</button>
+								</fieldset>
+							</form>
+							<h1>Form Validation States</h1>
+							<form role="form">
+								<div class="form-group has-success">
+									<label class="control-label" for="inputSuccess">Input with success</label>
+									<input type="text" class="form-control" id="inputSuccess">
+								</div>
+								<div class="form-group has-warning">
+									<label class="control-label" for="inputWarning">Input with warning</label>
+									<input type="text" class="form-control" id="inputWarning">
+								</div>
+								<div class="form-group has-error">
+									<label class="control-label" for="inputError">Input with error</label>
+									<input type="text" class="form-control" id="inputError">
+								</div>
+							</form>
+							<h1>Input Groups</h1>
+							<form role="form">
+								<div class="form-group input-group">
+									<span class="input-group-addon">@@</span>
+									<input type="text" class="form-control" placeholder="Username">
+								</div>
+								<div class="form-group input-group">
+									<input type="text" class="form-control">
+									<span class="input-group-addon">.00</span>
+								</div>
+								<div class="form-group input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-eur"></i>
+									</span>
+									<input type="text" class="form-control" placeholder="Font Awesome Icon">
+								</div>
+								<div class="form-group input-group">
+									<span class="input-group-addon">$</span>
+									<input type="text" class="form-control">
+									<span class="input-group-addon">.00</span>
+								</div>
+								<div class="form-group input-group">
+									<input type="text" class="form-control">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- /.col-lg-6 (nested) -->
+					</div>
+					<!-- /.row (nested) -->
+				</div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
